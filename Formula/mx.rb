@@ -1,8 +1,8 @@
 class Mx < Formula
   desc "Command-line tool used for the development of Graal projects"
   homepage "https://github.com/graalvm/mx"
-  url "https://github.com/BraeWebb/mx/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "21df67e6cc62f2414fc54d1c6ce31e9d94094b25c725cd7ade0605971668f752"
+  url "https://github.com/BraeWebb/mx", using: :git, tag: "v1.0.1"
+  sha256 "15d08fd58543f3a339a2c463d71c8fcabd2109c8cd06668d511234679ed012c3"
   license "GPL-2.0-only"
 
   livecheck do
@@ -20,6 +20,7 @@ class Mx < Formula
 
   def install
     libexec.install Dir["*"]
+    libexec.install Dir[".git"]
     (bin/"mx").write_env_script libexec/"mx", MX_PYTHON: "#{Formula["python@3.11"].opt_libexec}/bin/python"
     bash_completion.install libexec/"bash_completion/mx" => "mx"
   end
